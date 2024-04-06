@@ -23,11 +23,11 @@ class Config:
                 'app_id': '', 
                 'api_key': '', 
                 'api_secret': '', 
-                'api_model': 'v3.0'
+                'api_model': 'v3.5'  # ('v3.0', 'v3.5')
             },
             'zhipu': {
                 'api_key': '',
-                'model': 'glm-4'
+                'model': 'glm-3-turbo'  # ('glm-3-turbo', 'glm-4')
             }
         }
         for section, options in config_template.items():
