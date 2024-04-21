@@ -7,6 +7,7 @@ from IPython.display import Markdown, clear_output
 
 from engines.call import Call
 from utils.func import paginate
+from prompts.manager import CustomPrompt
 
 
 @dataclass
@@ -23,6 +24,7 @@ class ChatManager:
         self.dialog = None
         self.call = Call(engine_name)
         self.cache = CacheManager()
+        self.custom_prompt = CustomPrompt()
 
     def _show_msgs(self):
         if self.dialog:
@@ -42,6 +44,7 @@ class ChatManager:
         if prompt.strip():
             if (self.dialog is None) or start_new:
                 self.dialog = Dialog()
+            prompt = self.custom_prompt.apply_templates(prompt)  # Apply custom templates process
             self.dialog.msgs = self.call.chat(prompt, self.dialog.msgs.copy())
             self._show_msgs()
             self.cache.save_dialog(self.dialog)
