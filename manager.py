@@ -71,8 +71,8 @@ class ChatManager:
         while True:
             clear_output()
             current_page_dialogs, page_index, total_pages = paginate(all_dialogs, page_size, page_index)
-            content = ["|Number|Timestamp|Abstract|"] + ["|:---:|:---:|:---|"] + [
-                f"|**{i+1}**|{dialog.id}|{truncate(dialog.msgs[0])}|" \
+            content = ["|Number|Timestamp|Abstract|Rounds|"] + ["|:---:|:---:|:---|:---:|"] + [
+                f"|**{i+1}**|{dialog.id}|{truncate(dialog.msgs[0])}|{int(len(dialog.msgs)/2)}|" \
                 for i, dialog in enumerate(current_page_dialogs)
             ]
             display(Markdown('\n'.join(content) + '\n\n---\n'))
