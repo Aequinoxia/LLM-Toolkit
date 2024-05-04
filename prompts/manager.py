@@ -15,8 +15,13 @@ class CustomPrompt:
             trigger_content, query = prompt.split(delimiter, 1)
             keywords = trigger_content.split(' ')
             for keyword in keywords:
-                template_func = self._custom_prompts[keyword]
-                query = template_func(query)
+                if '-' in keyword:
+                    func_name, params = keyword.split('-', 1)
+                    template_func = self._custom_prompts[func_name]
+                    query = template_func(query, *params.split('-'))
+                else:
+                    template_func = self._custom_prompts[keyword]
+                    query = template_func(query)
             return query
         else:
             return prompt
