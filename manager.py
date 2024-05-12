@@ -28,6 +28,7 @@ class ChatManager:
 
     def _show_msgs(self):
         if self.dialog:
+            clear_output()
             if len(self.dialog.msgs) > 2:  # Place history messages within a collapsed block
                 content = ""
                 for i, msg in enumerate(self.dialog.msgs[:-2]):

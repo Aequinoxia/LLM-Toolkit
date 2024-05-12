@@ -13,8 +13,22 @@ class ZhiPuAPI(object):
                 'content': content
             } for i, content in enumerate(history + [prompt])
         ]
+        
+        # 同步调用
+        # answer = self.client.chat.completions.create(
+        #     messages=messages,
+        #     model=self.model,
+        #     tools=self.tools,
+        # ).choices[0].message.content
+        
+        # 流式调用
         response = self.client.chat.completions.create(
             messages=messages,
-            model=self.model
-        ).choices[0].message.content
-        return history + [prompt] + [response]
+            model=self.model,
+            stream=True
+        )
+        answer = ''
+        for chunk in response:
+            answer += chunk.choices[0].delta.content
+            print(chunk.choices[0].delta.content, end='', flush=True)
+        return history + [prompt] + [answer]
