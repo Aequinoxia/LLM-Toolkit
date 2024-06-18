@@ -7,11 +7,12 @@ class CustomPrompt:
 
     def apply_templates(self, prompt):
         """
-        自定义prompt的触发方式：在prompt开头输入自定义prompt的关键词（以空格分隔），然后冒号回车。
+        自定义prompt的触发方式：在prompt开头输入自定义prompt的关键词（以空格分隔），然后双冒号接回车。
         """
         prompt = prompt.lstrip()
-        delimiter = ':\n'
-        if delimiter in prompt:
+        line_one = prompt.split('\n')[0]
+        delimiter = '::'
+        if delimiter in line_one:
             trigger_content, query = prompt.split(delimiter, 1)
             keywords = trigger_content.split(' ')
             for keyword in keywords:
