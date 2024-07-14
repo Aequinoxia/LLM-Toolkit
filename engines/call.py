@@ -27,7 +27,7 @@ class Config:
             },
             'zhipu': {
                 'api_key': '',
-                'model': 'glm-3-turbo'  # ('glm-3-turbo', 'glm-4')
+                'model': 'glm-4-air'  # ALL Model: https://open.bigmodel.cn/modelcenter/square, Price: https://open.bigmodel.cn/pricing
             }
         }
         for section, options in config_template.items():
