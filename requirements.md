@@ -8,3 +8,6 @@
 
 ### zhipu
 - zhipuai
+
+### deepseek
+- openai

@@ -3,6 +3,7 @@ from pathlib import Path
 
 from .spark.api import SparkAPI
 from .zhipu.api import ZhiPuAPI
+from .deepseek.api import DeepSeekAPI
 
 
 class Config:
@@ -28,6 +29,10 @@ class Config:
             'zhipu': {
                 'api_key': '',
                 'model': 'glm-4-air'  # ALL Model: https://open.bigmodel.cn/modelcenter/square, Price: https://open.bigmodel.cn/pricing
+            },
+            'deepseek': {
+                'api_key': '',
+                'model': 'deepseek-coder'  # ALL Model: https://platform.deepseek.com/api-docs/zh-cn/pricing/
             }
         }
         for section, options in config_template.items():
@@ -50,7 +55,8 @@ class Engine:
     def __init__(self):
         self.engine_classes = {
             'spark': SparkAPI,
-            'zhipu': ZhiPuAPI
+            'zhipu': ZhiPuAPI,
+            'deepseek': DeepSeekAPI
         }
 
     def get(self, engine_name):
