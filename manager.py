@@ -26,6 +26,12 @@ class ChatManager:
         self.cache = CacheManager()
         self.custom_prompt = CustomPrompt()
 
+    def _auto_fold(self, msg, title, content_fold_length=100):
+        if len(msg) > content_fold_length:
+            return f"<details><summary>【{title}】</summary>\n\n{msg}\n</details>"
+        else:
+            return msg
+
     def _show_msgs(self):
         if self.dialog:
             clear_output()
@@ -38,8 +44,12 @@ class ChatManager:
                 collapsed_block = f"<details><summary>【History Messages】</summary>\n\n{content}\n</details>"
                 display(Markdown(collapsed_block))
             for i, msg in enumerate(self.dialog.msgs[-2:]):  # Display the last Q&A as usual
-                display(Markdown(f"## {'【Answer】' if i%2 else '【Query】'}"))
-                display(Markdown(msg+"\n\n---\n"))
+                if i%2:
+                    display(Markdown("## 【Answer】"))
+                    display(Markdown(msg+"\n\n---\n"))
+                else:
+                    query_content = "## 【Query】\n\n"+msg+"\n\n---\n"
+                    display(Markdown(self._auto_fold(query_content, "Folded Query")))
 
     def chat(self, prompt='', start_new=False):
         if prompt.strip():

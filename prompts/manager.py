@@ -8,6 +8,7 @@ class CustomPrompt:
     def apply_templates(self, prompt):
         """
         自定义prompt的触发方式：在prompt开头输入自定义prompt的关键词（以空格分隔），然后双冒号接回车。
+        关键词后可以通过'-'接上若干个参数，比如'guide-python'
         """
         prompt = prompt.lstrip()
         line_one = prompt.split('\n')[0]
