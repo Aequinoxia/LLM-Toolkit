@@ -43,9 +43,12 @@ def review(prompt, lang='Next.js'):
 
 def ph(prompt):
     """Product Hunt自动回复"""
-    command = "I hope you can provide a response to the content mentioned above. To ensure the quality of the response, you need to complete the following three tasks in order:\n"\
+    command = "**I hope you can provide meaningful, valuable, and constructive feedback on the above product (and related information) from the user's perspective.**\n"\
+              "To ensure the quality of the response, you need to complete the following three tasks in order:\n"\
               "1. Analyze what information, in relation to the above text, might bring value or assistance to the author or other users.\n"\
               "2. From the directions you've just listed, select the most helpful and least error-prone perspective, and elaborate on it in approximately 100-200 words.\n"\
-                 "Also, make sure to wrap up your response with a **meaningful** question to boost the chances of getting a reply."\
-              "3. Please synthesize the results from Task 2 and convert them into a sincere and valuable response of about 100-200 words (make sure the content of the response ends with a question)."
+                 "Also, make sure to wrap up your response with a **meaningful** question to boost the chances of getting a reply.\n"\
+              "3. Based on the content of Task 2, organize our views into a fluent, natural, and constructive response text, keeping the word count under 150 words: \n"\
+                 "\t- First, congratulate the other party on their product launch, then provide constructive analysis, evaluation, or suggestions. "\
+                 "Finally, pose a valuable question that can attract a response from the other party and casually inquire about their future product iteration plans."
     return prompt + f"\n\n---\n\n{command}"
