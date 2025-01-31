@@ -24,6 +24,11 @@ class DeepSeekAPI(object):
         )
         answer = ''
         for chunk in response:
-            answer += chunk.choices[0].delta.content
-            print(chunk.choices[0].delta.content, end='', flush=True)
+            content = chunk.choices[0].delta.content
+            reasoning_content = chunk.choices[0].delta.reasoning_content if hasattr(chunk.choices[0].delta, 'reasoning_content') else None
+            if reasoning_content:
+                print(reasoning_content, end='', flush=True)
+            if content:
+                answer += content
+                print(content, end='', flush=True)
         return history + [prompt] + [answer]

@@ -2,8 +2,8 @@ def comment(prompt, env=''):
     return prompt + f"\n\n请你站在以英文为母语的编程专家的视角，帮我将以上内容**用英文**转化成简洁、自然、合理且专业的{env}注释。"
 
 
-def naming(prompt, lang='python', item='代码'):
-    return prompt + f"\n\n请你站在{lang}编程专家的视角，为表达以上含义的{lang} {item}，提出几个简洁、合理且符合标准代码风格指南的命名建议。"
+def naming(prompt, lang='python'):
+    return prompt + f"\n\n请你站在 {lang} 命名专家的视角，为表达以上含义的{lang}，提出几个简洁、合理且符合相关指南（或最佳实践）的命名建议。"
 
 
 def guide(prompt, lang='python'):
@@ -61,3 +61,14 @@ def ph(prompt):
               "4. Polish the response text obtained from Task 3, without altering the original meaning, to enhance the diction and expression. "\
                  "The goal is to **make the comment appear more authentic, natural, and coherent, as if written by a genuine netizen with sincere intent**."
     return prompt + f"\n\n---\n\n{command}"
+
+
+def bbguide(prompt):
+    """block-blast攻略生成"""
+    command = "Please refer to the content above and write a fluent and natural English guide on how to play the game Block Blast. The language should be natural, the content rich, and the guide should be practically valuable. The content should not be too lengthy. Avoid excessive elaboration or free interpretation. Strive to accurately reflect the original text. The guide should subtly and naturally include the web link for playing Block Blast online (https://block-blast.cc/). Please wrap the content of the article you write in markdown code blocks, so that I can easily copy and use it."
+    return "```\n" + prompt + "\n```\n" + f"\n\n---\n\n{command}"
+
+def gameseo(prompt):
+    """iframe游戏的seo内容生成"""
+    command = "Refer to the information provided above and write an article in Markdown introducing this game. Ensure your language is smooth and natural, and your content accurately reflects the background information provided. Do not fabricate any facts you are unsure of. Your content should include an H1, several H2s, and corresponding text paragraphs. Finally, wrap your content in a Markdown code block to facilitate easy copying and pasting."
+    return "```\n" + prompt + "\n```\n" + f"\n\n---\n\n{command}"
